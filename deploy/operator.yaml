@@ -39,6 +39,14 @@ spec:
         - name: sriov-network-operator
           # Replace this with the built image name
           image: $SRIOV_NETWORK_OPERATOR_IMAGE
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - "ALL"
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
           command:
           - sriov-network-operator
           imagePullPolicy: IfNotPresent
