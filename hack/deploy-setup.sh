@@ -17,7 +17,7 @@ load_manifest() {
 
   pushd ${repo}/deploy
     if ! ${OPERATOR_EXEC} get ns $2 > /dev/null 2>&1 && test -f namespace.yaml ; then
-      
+
       envsubst< namespace.yaml | ${OPERATOR_EXEC} apply -f -
     fi
     files="service_account.yaml role.yaml role_binding.yaml clusterrole.yaml clusterrolebinding.yaml configmap.yaml operator.yaml"
